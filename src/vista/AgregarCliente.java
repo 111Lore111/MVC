@@ -14,7 +14,7 @@ import javax.swing.JPanel;
  *
  * @author Lorraine
  */
-public class AgregarCliente extends javax.swing.JFrame {
+public class AgregarCliente extends javax.swing.JFrame{
     
     FondoCliente fondo = new FondoCliente();
     int xMouse, yMouse;
@@ -23,7 +23,8 @@ public class AgregarCliente extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -35,8 +36,8 @@ public class AgregarCliente extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        rutJTextField = new javax.swing.JTextField();
+        nombreJTextField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         vigenteBtn = new javax.swing.JPanel();
         vigenteTxt = new javax.swing.JLabel();
@@ -184,7 +185,7 @@ public class AgregarCliente extends javax.swing.JFrame {
                 .addGap(61, 61, 61)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField1)
+                        .addComponent(rutJTextField)
                         .addGap(231, 231, 231))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,7 +198,7 @@ public class AgregarCliente extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(vigenteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(97, 97, 97))))
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(nombreJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -213,11 +214,11 @@ public class AgregarCliente extends javax.swing.JFrame {
                 .addGap(58, 58, 58)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rutJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nombreJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
@@ -296,9 +297,6 @@ public class AgregarCliente extends javax.swing.JFrame {
         vigenteTxt.setForeground(Color.white);
     }//GEN-LAST:event_vigenteTxtMouseExited
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -311,23 +309,21 @@ public class AgregarCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel agregarBtn;
     private javax.swing.JLabel agregarTxt;
-    private javax.swing.JPanel barra;
     private javax.swing.JPanel barra1;
-    private javax.swing.JPanel exitBtn;
     private javax.swing.JPanel exitBtn1;
-    private javax.swing.JLabel exitTxt;
     private javax.swing.JLabel exitTxt1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    public javax.swing.JTextField jTextField1;
-    public javax.swing.JTextField jTextField2;
+    public javax.swing.JTextField nombreJTextField;
+    public javax.swing.JTextField rutJTextField;
     public javax.swing.JPanel vigenteBtn;
     public javax.swing.JLabel vigenteTxt;
     // End of variables declaration//GEN-END:variables
 
+    
     class FondoCliente extends JPanel{
        private Image imagen;
 
@@ -340,4 +336,5 @@ public class AgregarCliente extends javax.swing.JFrame {
            super.paint(g);
        }
     }
+    
 }

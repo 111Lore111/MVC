@@ -14,10 +14,10 @@ public class Cliente {
     private String nombre;
     private boolean vigente;
 
-    public Cliente(String cedula, String nombre) {
+    public Cliente(String cedula, String nombre, boolean vigente) {
         setCedula(cedula);
         setNombre(nombre);
-        setVigente(true);
+        setVigente(vigente);
     }
     
     public String getCedula() {
@@ -25,13 +25,6 @@ public class Cliente {
     }
 
     public void setCedula(String cedula) {
-        if (cedula.length() != 10) {
-            throw new IllegalArgumentException("Debes ingresar una cédula con un largo de 10.");
-        }
-        
-        if (cedula.charAt(cedula.length() - 2) != '-') {
-            throw new IllegalArgumentException("El rut debe contener un guión.");
-        }
         this.cedula = cedula;
     }
 
