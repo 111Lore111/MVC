@@ -15,7 +15,7 @@ public class ControladorAgregarClientes {
 
     // Creamos un metodo que recibe como parametro nombre y cedula y vigente del
     // modelo cliente
-    public void agregarCliente(String nombre, String cedula, boolean vigente) {
+    public void agregarCliente(String cedula, String nombre, boolean vigente) {
         // Creamos un objeto de tipo cliente
         Cliente cliente = new Cliente();
         // Asignamos los valores a los atributos del objeto cliente
@@ -24,5 +24,8 @@ public class ControladorAgregarClientes {
         cliente.setVigente(vigente);
         // Agregamos el objeto cliente al arrayList
         listaClientes.add(cliente);
+        // Imprimimos cliente con metodo toString
+        System.out.println(cliente.toString());
     }
+
 }

@@ -29,13 +29,14 @@ public class Cliente {
     }
 
     public void setCedula(String cedula) {
-        if (cedula.length() != 10) {
-            throw new IllegalArgumentException("Debes ingresar una cédula con un largo de 10.");
-        }
+        // if (cedula.length() != 10) {
+        // throw new IllegalArgumentException("Debes ingresar una cédula con un largo de
+        // 10.");
+        // }
 
-        if (cedula.charAt(cedula.length() - 2) != '-') {
-            throw new IllegalArgumentException("El rut debe contener un guión.");
-        }
+        // if (cedula.charAt(cedula.length() - 2) != '-') {
+        // throw new IllegalArgumentException("El rut debe contener un guión.");
+        // }
         this.cedula = cedula;
     }
 
@@ -53,6 +54,11 @@ public class Cliente {
 
     public void setVigente(boolean vigente) {
         this.vigente = vigente;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "cedula=" + cedula + ", nombre=" + nombre + ", vigente=" + vigente + '}';
     }
 
 }

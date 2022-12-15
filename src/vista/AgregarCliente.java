@@ -10,6 +10,8 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import controlador.ControladorAgregarClientes;
+
 /**
  *
  * @author Lorraine
@@ -36,8 +38,8 @@ public class AgregarCliente extends javax.swing.JFrame {
                 jLabel1 = new javax.swing.JLabel();
                 jLabel2 = new javax.swing.JLabel();
                 jLabel3 = new javax.swing.JLabel();
-                rutJTextField = new javax.swing.JTextField();
-                nombreJTextField = new javax.swing.JTextField();
+                rutCliente = new javax.swing.JTextField();
+                nombreCliente = new javax.swing.JTextField();
                 jLabel4 = new javax.swing.JLabel();
                 vigenteBtn = new javax.swing.JPanel();
                 vigenteTxt = new javax.swing.JLabel();
@@ -209,7 +211,7 @@ public class AgregarCliente extends javax.swing.JFrame {
                                                                                 javax.swing.GroupLayout.Alignment.LEADING)
                                                                                 .addGroup(jPanel1Layout
                                                                                                 .createSequentialGroup()
-                                                                                                .addComponent(jTextField1)
+                                                                                                .addComponent(rutCliente)
                                                                                                 .addGap(231, 231, 231))
                                                                                 .addGroup(jPanel1Layout
                                                                                                 .createSequentialGroup()
@@ -238,7 +240,7 @@ public class AgregarCliente extends javax.swing.JFrame {
                                                                                                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                                                                                                 .addGap(97, 97, 97))))
-                                                                                                                .addComponent(jTextField2,
+                                                                                                                .addComponent(nombreCliente,
                                                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                                                                 271,
                                                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -267,7 +269,7 @@ public class AgregarCliente extends javax.swing.JFrame {
                                                                 .addGroup(jPanel1Layout.createParallelGroup(
                                                                                 javax.swing.GroupLayout.Alignment.BASELINE)
                                                                                 .addComponent(jLabel2)
-                                                                                .addComponent(jTextField1,
+                                                                                .addComponent(rutCliente,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -275,7 +277,7 @@ public class AgregarCliente extends javax.swing.JFrame {
                                                                 .addGroup(jPanel1Layout.createParallelGroup(
                                                                                 javax.swing.GroupLayout.Alignment.BASELINE)
                                                                                 .addComponent(jLabel3)
-                                                                                .addComponent(jTextField2,
+                                                                                .addComponent(nombreCliente,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -342,11 +344,17 @@ public class AgregarCliente extends javax.swing.JFrame {
                 // this.dispose();
 
                 // Tomamos los datos de los campos textfields rut y nombre
-                String rut = jTextField1.getText();
-                String nombre = jTextField2.getText();
+                String rut = nombreCliente.getText();
+                String nombre = rutCliente.getText();
+                String vigente = vigenteTxt.getText();
 
+                // Pasamos vigente de String to boolean
+                boolean vigenteBool = Boolean.parseBoolean(vigente);
+
+                ControladorAgregarClientes AgregarClienteCtrl = new ControladorAgregarClientes();
                 // llamamos al metodo para agregar cliente
-                agregarCliente();
+                AgregarClienteCtrl.agregarCliente(rut, nombre, vigenteBool);
+
         }// GEN-LAST:event_agregarTxtMouseClicked
 
         private void agregarTxtMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_agregarTxtMouseEntered
@@ -393,8 +401,8 @@ public class AgregarCliente extends javax.swing.JFrame {
         private javax.swing.JLabel jLabel3;
         private javax.swing.JLabel jLabel4;
         private javax.swing.JPanel jPanel1;
-        public javax.swing.JTextField nombreJTextField;
-        public javax.swing.JTextField rutJTextField;
+        public javax.swing.JTextField nombreCliente;
+        public javax.swing.JTextField rutCliente;
         public javax.swing.JPanel vigenteBtn;
         public javax.swing.JLabel vigenteTxt;
         // End of variables declaration//GEN-END:variables
