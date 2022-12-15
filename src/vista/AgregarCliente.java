@@ -301,6 +301,10 @@ public class AgregarCliente extends javax.swing.JFrame {
         // v.setVisible(true);
         // this.dispose();
 
+        // Tomamos los datos de los campos textfields rut y nombre
+        String rut = jTextField1.getText();
+        String nombre = jTextField2.getText();
+
         // llamamos al metodo para agregar cliente
         agregarCliente();
     }// GEN-LAST:event_agregarTxtMouseClicked
