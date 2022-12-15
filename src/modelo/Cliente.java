@@ -9,17 +9,21 @@ package modelo;
  * @author Lorraine
  */
 public class Cliente {
-    
+
     private String cedula;
     private String nombre;
     private boolean vigente;
+
+    public Cliente() {
+
+    }
 
     public Cliente(String cedula, String nombre) {
         setCedula(cedula);
         setNombre(nombre);
         setVigente(true);
     }
-    
+
     public String getCedula() {
         return cedula;
     }
@@ -28,7 +32,7 @@ public class Cliente {
         if (cedula.length() != 10) {
             throw new IllegalArgumentException("Debes ingresar una cédula con un largo de 10.");
         }
-        
+
         if (cedula.charAt(cedula.length() - 2) != '-') {
             throw new IllegalArgumentException("El rut debe contener un guión.");
         }
@@ -50,6 +54,5 @@ public class Cliente {
     public void setVigente(boolean vigente) {
         this.vigente = vigente;
     }
-    
-    
+
 }

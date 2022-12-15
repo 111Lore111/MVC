@@ -7,17 +7,22 @@ package controlador;
 import java.awt.event.ActionListener;
 import modelo.*;
 import vista.*;
-/**
- *
- * @author Lorraine
- */
-//public class ControladorClientes implements ActionListener{
-//    
-//    private AgregarCliente view;
-//    private Cliente modelo;
-//    
-//    public ControladorClientes(AgregarCliente view, Cliente modelo){
-//    
-//    }
-//    
-//}
+import java.util.ArrayList;
+
+public class ControladorAgregarClientes {
+    // Creamos un arrayList de tipo cliente
+    ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+
+    // Creamos un metodo que recibe como parametro nombre y cedula y vigente del
+    // modelo cliente
+    public void agregarCliente(String nombre, String cedula, boolean vigente) {
+        // Creamos un objeto de tipo cliente
+        Cliente cliente = new Cliente();
+        // Asignamos los valores a los atributos del objeto cliente
+        cliente.setNombre(nombre);
+        cliente.setCedula(cedula);
+        cliente.setVigente(vigente);
+        // Agregamos el objeto cliente al arrayList
+        listaClientes.add(cliente);
+    }
+}
