@@ -354,9 +354,12 @@ public class AgregarCliente extends javax.swing.JFrame {
                 // llamamos al metodo para agregar cliente
                 AgregarClienteCtrl.agregarCliente(rut, nombre, vigenteBool);
 
+                // Cerramos la ventana actual
+                this.dispose();
+
+                // Abrimos la ventana de arriendo con cuotas
                 ArriendoConCuotas v = new ArriendoConCuotas();
                 v.setVisible(true);
-                this.dispose();
         }
         // ----------------
 
