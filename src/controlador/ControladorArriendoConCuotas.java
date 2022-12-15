@@ -4,10 +4,16 @@
  */
 package controlador;
 
+import java.util.ArrayList;
+import modelo.*;
+
 /**
  *
  * @author Lorraine
  */
 public class ControladorArriendoConCuotas {
     
+    public void guardarCliente(){
+        ArrayList<Cliente>ArrayList = new ArrayList();
+    }
 }

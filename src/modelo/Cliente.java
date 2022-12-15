@@ -18,10 +18,10 @@ public class Cliente {
 
     }
 
-    public Cliente(String cedula, String nombre) {
+    public Cliente(String cedula, String nombre, boolean vigente) {
         setCedula(cedula);
         setNombre(nombre);
-        setVigente(true);
+        setVigente(vigente);
     }
 
     public String getCedula() {
