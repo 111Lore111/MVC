@@ -338,11 +338,13 @@ public class AgregarCliente extends javax.swing.JFrame {
                 yMouse = evt.getY();
         }// GEN-LAST:event_barra1MousePressed
 
+        // IMPORTANTE ESTE METODO ES EL QUE SE EJECUTA CUANDO SE PRESIONA EL BOTON
+        // AGREGAR CLIENTE
         private void agregarTxtMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_agregarTxtMouseClicked
 
                 // Tomamos los datos de los campos textfields rut y nombre
-                String rut = nombreCliente.getText();
-                String nombre = rutCliente.getText();
+                String rut = rutCliente.getText();
+                String nombre = nombreCliente.getText();
                 String vigente = vigenteTxt.getText();
 
                 // Pasamos vigente de String to boolean
@@ -355,7 +357,8 @@ public class AgregarCliente extends javax.swing.JFrame {
                 ArriendoConCuotas v = new ArriendoConCuotas();
                 v.setVisible(true);
                 this.dispose();
-        }// GEN-LAST:event_agregarTxtMouseClicked
+        }
+        // ----------------
 
         private void agregarTxtMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_agregarTxtMouseEntered
                 agregarBtn.setBackground(Color.orange);
