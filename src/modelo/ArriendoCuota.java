@@ -15,7 +15,6 @@ public class ArriendoCuota extends Arriendo {
             int cantCuotas) {
         super(numArriendo, fecArr, diasArriendo, cliente, vehiculo);
         setCantCuotas(cantCuotas);
-        // evaluarArriendo(cliente, vehiculo);
 
     }
 
@@ -58,14 +57,14 @@ public class ArriendoCuota extends Arriendo {
     // // generar las cuotas del arriendo instanciado
     // // y asignarles el valor correspondiente a cada una de ellas.
 
-    // public ArrayList<CuotaArriendo> generarCuotas(int precioDia) {
-    // ArrayList<CuotaArriendo> cuotas = new ArrayList<>();
-    // int valorCuota = precioDia * getDiasArriendo() / getCantCuotas();
-    // for (int i = 0; i < getCantCuotas(); i++) {
-    // cuotas.add(new CuotaArriendo(i + 1, valorCuota, false));
-    // }
-    // return cuotas;
-    // }
+    public ArrayList<CuotaArriendo> generarCuotas(int precioDia) {
+        ArrayList<CuotaArriendo> cuotas = new ArrayList<>();
+        int valorCuota = precioDia * getDiasArriendo() / getCantCuotas();
+        for (int i = 0; i < getCantCuotas(); i++) {
+            cuotas.add(new CuotaArriendo(i + 1, valorCuota, false));
+        }
+        return cuotas;
+    }
 
     // ----------------
 

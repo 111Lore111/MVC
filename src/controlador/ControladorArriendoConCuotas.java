@@ -40,6 +40,12 @@ public class ControladorArriendoConCuotas {
         arriendosConCuotasBase.add(arriendo1);
         arriendosConCuotasBase.add(arriendo2);
         arriendosConCuotasBase.add(arriendo3);
+
+        // Generamos las cuotas de los arriendos
+        arriendo1.setCuotas(generarCuotas(arriendo1, 10000));
+        arriendo2.setCuotas(generarCuotas(arriendo2, 20000));
+        arriendo3.setCuotas(generarCuotas(arriendo3, 30000));
+
     }
 
     public boolean ingresarArriendoConCuotas(ArriendoCuota arriendo, int precioDia) {
@@ -54,7 +60,8 @@ public class ControladorArriendoConCuotas {
 
     public ArrayList<CuotaArriendo> generarCuotas(ArriendoCuota arriendo, int precioDia) {
         ArrayList<CuotaArriendo> cuotas = new ArrayList<>();
-        int valorCuota = precioDia * arriendo.getDiasArriendo() / arriendo.getCantCuotas();
+        int valorCuota = precioDia * arriendo.getDiasArriendo() /
+                arriendo.getCantCuotas();
         for (int i = 0; i < arriendo.getCantCuotas(); i++) {
             cuotas.add(new CuotaArriendo(i + 1, valorCuota, false));
         }
@@ -83,11 +90,29 @@ public class ControladorArriendoConCuotas {
     // Recibe el numArriendo y retorna el arriendo con cuotas con ese numArriendo
     public ArriendoCuota getArriendoConCuotasByNumArriendo(int numArriendo) {
         for (ArriendoCuota arriendo : arriendosConCuotasBase) {
+
             if (arriendo.getNumArriendo() == numArriendo) {
+                System.out.println("Encontrado");
                 return arriendo;
             }
         }
         return null;
+    }
+
+    // Pagar cuota: operación que recibe la cuota a pagar y busca la cuota en la
+    // lista respectiva. Si la encuentra, el método
+    // actualiza el atributo pagada con True y retorna un true, en caso contrario,
+    // retorna un false.
+
+    public boolean pagarCuota(ArriendoCuota arriendo, CuotaArriendo cuota) {
+        for (CuotaArriendo cuotaArriendo : arriendo.getCuotas()) {
+            if (cuotaArriendo.equals(cuota)) {
+                cuotaArriendo.setPagada(true);
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }
