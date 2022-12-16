@@ -4,19 +4,21 @@
  */
 package modelo;
 
-/**
- *
- * @author Lorraine
- */
-public class Arriendo{
-     private int numArriendo;
-     private String fecArr;
-     private int diasArriendo;
+public class Arriendo {
+    private int numArriendo;
+    private String fecArr;
+    private int diasArriendo;
+    private Cliente cliente;
+    private Vehiculo vehiculo;
 
-    public Arriendo(int numArriendo, String fecArr, int diasArriendo) {
+    public Arriendo(int numArriendo, String fecArr, int diasArriendo, Cliente cliente, Vehiculo vehiculo) {
         setNumArriendo(numArriendo);
         setFecArr(fecArr);
         setDiasArriendo(diasArriendo);
+        setCliente(cliente);
+        setVehiculo(vehiculo);
+        evaluarArriendo(cliente, vehiculo);
+
     }
 
     public int getNumArriendo() {
@@ -42,15 +44,31 @@ public class Arriendo{
     public void setDiasArriendo(int diasArriendo) {
         this.diasArriendo = diasArriendo;
     }
-     
-    public static void arriendo(int numArriendo, String fecArr, int diasArriendo){
+
+    public Cliente getCliente() {
+        return cliente;
     }
-    
-    public int obtenerMontoApagar(int precioDia){
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
+    }
+
+    public static void arriendo(int numArriendo, String fecArr, int diasArriendo) {
+    }
+
+    public int obtenerMontoApagar(int precioDia) {
         return 0;
     }
-    
-    public boolean evaluarArriendo(Cliente cliente, Vehiculo vehiculo){
+
+    public boolean evaluarArriendo(Cliente cliente, Vehiculo vehiculo) {
         if (!cliente.isVigente() || vehiculo.getCondicion() != 'D') {
             return false;
         }
