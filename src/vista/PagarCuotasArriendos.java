@@ -7,13 +7,20 @@ package vista;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 import controlador.ControladorArriendoConCuotas;
+import modelo.Arriendo;
+import modelo.ArriendoCuota;
 import modelo.Cliente;
+import modelo.CuotaArriendo;
 
 /**
  *
@@ -120,21 +127,64 @@ public class PagarCuotasArriendos extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Pagar cuotas Arriendo");
 
-        // listadoClientesComboBox.setModel(
-        // new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2",
-        // "Item 3", "Item 4" }));
+        // ------------------------------ DROPDOWN LISTADO CLIENTES --------------------
 
         ControladorArriendoConCuotas controladorArriendoConCuotas = new ControladorArriendoConCuotas();
         // ArrayList de clientes que viene de controladorArriendoConCuotas metodo
         // getArriendosConCuotas
         ArrayList<Cliente> listaClientes = controladorArriendoConCuotas.getClientesConCuotas();
 
-        // Listar clientes en el combobox
+        // Listar clientes en el combobox y se determina el cliente seleccionado
+        // En el combobox se muestra solo el nombre del cliente
+
         listadoClientesComboBox
                 .setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un cliente" }));
         for (Cliente cliente : listaClientes) {
             listadoClientesComboBox.addItem(cliente.getNombre());
         }
+        listadoClientesComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listadoClientesComboBoxActionPerformed(evt);
+            }
+
+            private void listadoClientesComboBoxActionPerformed(ActionEvent evt) {
+
+                // Se obtiene el nombre del cliente seleccionado y se busca en la lista de
+                // clientes
+                String nombreClienteSeleccionado = listadoClientesComboBox.getSelectedItem().toString();
+                Cliente clienteSeleccionado = null;
+                for (Cliente cliente : listaClientes) {
+                    if (cliente.getNombre().equals(nombreClienteSeleccionado)) {
+                        clienteSeleccionado = cliente;
+                    }
+                }
+
+                // Se obtiene el listado de arriendos del cliente seleccionado
+                ArrayList<ArriendoCuota> listaArriendos = controladorArriendoConCuotas
+                        .getArriendosConCuotas(clienteSeleccionado);
+
+                // Listar arriendos con cuotas del cliente seleccionado en jList1 mostrando solo
+                // el numArriendo como int
+
+                jList1.setModel(
+                        new javax.swing.AbstractListModel<String>() {
+                            String[] strings = new String[listaArriendos.size()];
+                            {
+                                for (int i = 0; i < listaArriendos.size(); i++) {
+                                    strings[i] = String.valueOf(listaArriendos.get(i).getNumArriendo());
+                                }
+                            }
+
+                            public int getSize() {
+                                return strings.length;
+                            }
+
+                            public String getElementAt(int i) {
+                                return strings[i];
+                            }
+                        });
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -176,15 +226,64 @@ public class PagarCuotasArriendos extends javax.swing.JFrame {
         mostrarArriendoTxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         mostrarArriendoTxt.setText("Mostrar pagos arriendo seleccionado >>");
         mostrarArriendoTxt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        mostrarArriendoTxt.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                mostrarArriendoTxtMouseEntered(evt);
+
+        // Se detecta el click en el boton mostrarArriendoBtn
+
+        mostrarArriendoBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mostrarArriendoBtnMouseClicked(evt);
             }
 
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                mostrarArriendoTxtMouseExited(evt);
+            private void mostrarArriendoBtnMouseClicked(MouseEvent evt) {
             }
         });
+
+        // Se obtiene el arriendo seleccionado en jList1
+        // TODO: Se debe tomar el elemento seleccionado del jList1 utilizarlo para
+        // consultar el arriendo
+
+        // se extrae el ArriendoCuota con el metodo getArriendoConCuotasByNumArriendo
+        ArriendoCuota arriendoSeleccionado = controladorArriendoConCuotas
+                .getArriendoConCuotasByNumArriendo(1);
+
+        // Se obtiene el listado de cuotas del arriendo seleccionado
+
+        ArrayList<CuotaArriendo> listaCuotas = arriendoSeleccionado.getCuotas();
+        // Se muestra el listado de pagos en la tabla jTable1
+
+        jTable1.setModel(
+                new javax.swing.table.DefaultTableModel(
+                        new Object[][] {
+                                { "-", "-", "-" },
+                                { "-", "-", "-" },
+                                { "-", "-", "-" },
+                                { "-", "-", "-" }
+                        },
+                        new String[] {
+                                "Número", "Valor", "¿Pagada?"
+                        }));
+
+        // Se obtiene el modelo de la tabla jTable1
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+
+        // Se recorre el listado de cuotas
+        for (CuotaArriendo cuota : listaCuotas) {
+            // Se obtiene el numero de la cuota
+            int numCuota = cuota.getNumCuota();
+            // Se obtiene el valor de la cuota
+            int valorCuota = cuota.getValorCuota();
+            // Se obtiene el estado de la cuota
+            boolean estadoCuota = cuota.isPagada();
+
+            // Se pasan numCuota, valorCuota y estadoCuota a String
+            String numCuotaStr = String.valueOf(numCuota);
+            String valorCuotaStr = String.valueOf(valorCuota);
+            String estadoCuotaStr = String.valueOf(estadoCuota);
+            // Se crea un array de objetos con los datos de la cuota
+            Object[] datosCuota = { numCuota, valorCuota, estadoCuota };
+            // Se agrega la fila a la tabla
+            modelo.addRow(datosCuota);
+        }
 
         javax.swing.GroupLayout mostrarArriendoBtnLayout = new javax.swing.GroupLayout(mostrarArriendoBtn);
         mostrarArriendoBtn.setLayout(mostrarArriendoBtnLayout);

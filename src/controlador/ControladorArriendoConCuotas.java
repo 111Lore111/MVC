@@ -65,7 +65,7 @@ public class ControladorArriendoConCuotas {
     // cliente tiene alguno y retorna un arrayList con los arriendos con cuotas del
     // cliente
 
-    public ArrayList<ArriendoCuota> buscarArriendosConCuotas(Cliente cliente) {
+    public ArrayList<ArriendoCuota> getArriendosConCuotas(Cliente cliente) {
         ArrayList<ArriendoCuota> arriendosConCuotas = new ArrayList<>();
         for (ArriendoCuota arriendo : arriendosConCuotasBase) {
             if (arriendo.getCliente().equals(cliente)) {
@@ -78,6 +78,16 @@ public class ControladorArriendoConCuotas {
     // Retorna un arrayList con todos los clientes de arriendos con cuotas
     public ArrayList<Cliente> getClientesConCuotas() {
         return clientesBase;
+    }
+
+    // Recibe el numArriendo y retorna el arriendo con cuotas con ese numArriendo
+    public ArriendoCuota getArriendoConCuotasByNumArriendo(int numArriendo) {
+        for (ArriendoCuota arriendo : arriendosConCuotasBase) {
+            if (arriendo.getNumArriendo() == numArriendo) {
+                return arriendo;
+            }
+        }
+        return null;
     }
 
 }
