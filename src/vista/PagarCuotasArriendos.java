@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -36,6 +37,8 @@ public class PagarCuotasArriendos extends javax.swing.JFrame {
         Cliente clienteSeleccionado;
         Arriendo arriendoSeleccionado;
         CuotaArriendo cuotaSeleccionada;
+
+        ControladorArriendoConCuotas controladorArriendoConCuotas = new ControladorArriendoConCuotas();
 
         public PagarCuotasArriendos() {
                 initComponents();
@@ -138,7 +141,6 @@ public class PagarCuotasArriendos extends javax.swing.JFrame {
 
                 // ------------------------------ DROPDOWN LISTADO CLIENTES --------------------
 
-                ControladorArriendoConCuotas controladorArriendoConCuotas = new ControladorArriendoConCuotas();
                 // ArrayList de clientes que viene de controladorArriendoConCuotas metodo
                 // getArriendosConCuotas
                 ArrayList<Cliente> listaClientes = controladorArriendoConCuotas.getClientesConCuotas();
@@ -326,10 +328,20 @@ public class PagarCuotasArriendos extends javax.swing.JFrame {
                                 // });
 
                                 // Para pruebas se define cuotaSeleccionada como la primera cuota del arriendo
-                                // CuotaArriendo cuotaSeleccionada = arriendoSeleccionado.getCuotas().get(0);
+                                cuotaSeleccionada = arriendoSeleccionado.getCuotas().get(0);
 
                                 // Se detecta el click en el boton pagarCuotaBtn y se llama al metodo
                                 // pagarCuota de la clase ControladorArriendoConCuotas
+                                pagoBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+                                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                                // Se llama al metodo pagarCuota de la clase
+                                                // ControladorArriendoConCuotas
+                                                controladorArriendoConCuotas.pagarCuota(arriendoSeleccionado,
+                                                                cuotaSeleccionada);
+                                                // Se muestra el mensaje de pago exitoso
+                                                JOptionPane.showMessageDialog(null, "Pago exitoso");
+                                        }
+                                });
 
                         }
                 });
@@ -363,11 +375,18 @@ public class PagarCuotasArriendos extends javax.swing.JFrame {
                                 pagoTxtMouseExited(evt);
                         }
 
+                        // public void mouseClicked(java.awt.event.MouseEvent evt) {
+                        // pagoTxtMouseClicked(evt);
+
+                        // }
+
+                });
+
+                pagoBtn.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
-                                pagoTxtMouseClicked(evt);
+                                pagoBtnMouseClicked(evt, arriendoSeleccionado, cuotaSeleccionada);
 
                         }
-
                 });
 
                 javax.swing.GroupLayout pagoBtnLayout = new javax.swing.GroupLayout(pagoBtn);
@@ -566,6 +585,16 @@ public class PagarCuotasArriendos extends javax.swing.JFrame {
                 pack();
         }// </editor-fold>//GEN-END:initComponents
 
+        // pagoBtn mouse events
+
+        private void pagoBtnMouseClicked(java.awt.event.MouseEvent evt, ArriendoConCuotas arriendo,
+                        CuotaArriendo cuota) {// GEN-FIRST:event_pagoBtnMouseClicked
+                // Se llama al metodo pagarCuota de la clase dentroladorArriendoConCuotas
+                controladorArriendoConCuotas.pagarCuota(arriendo, cuota);
+                // Se muestra el mensaje de pago exitoso
+                JOptionPane.showMessageDialog(null, "Pago exitoso");
+        }// GEN-LAST:event_pagoBtnMouseClicked
+
         private void exitTxtMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_exitTxtMouseClicked
                 System.exit(0);
         }// GEN-LAST:event_exitTxtMouseClicked
@@ -627,15 +656,8 @@ public class PagarCuotasArriendos extends javax.swing.JFrame {
                 mostrarArriendoTxt.setForeground(Color.white);
         }// GEN-LAST:event_mostrarArriendoTxtMouseExited
 
-        private void pagoTxtMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_pagoTxtMouseClicked
-
-                // ControladorArriendoConCuotas.pagarCuota(arriendoSeleccionado,
-                // cuotaSeleccionada);
-
-                PagarCuotasArriendos v = new PagarCuotasArriendos();
-                v.setVisible(true);
-                this.dispose();
-        }// GEN-LAST:event_pagoTxtMouseClicked
+        // private void pagoTxtMouseClicked(java.awt.event.MouseEvent evt) {//
+        // GEN-FIRST:event_pagoTxtMouseClicked
 
         public static void main(String args[]) {
 
