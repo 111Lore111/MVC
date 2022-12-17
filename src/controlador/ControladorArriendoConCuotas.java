@@ -15,9 +15,9 @@ public class ControladorArriendoConCuotas {
     Cliente cliente3 = new Cliente("12345678-3", "Usuario 3", true);
 
     // Luego creamos 3 vehiculos
-    Vehiculo vehiculo1 = new Vehiculo("ABCD0001");
-    Vehiculo vehiculo2 = new Vehiculo("ABCD0002");
-    Vehiculo vehiculo3 = new Vehiculo("ABCD0003");
+    Vehiculo vehiculo1 = new Vehiculo("Abarth","Punto Abarth","AB-CD*11");
+    Vehiculo vehiculo2 = new Vehiculo("Audi","A1 Sportback","EF-GH*22");
+    Vehiculo vehiculo3 = new Vehiculo("Fiat","500L","IJ-KL*33");
 
     // Creamos 3 arriendos con cuotas
     ArriendoCuota arriendo1 = new ArriendoCuota(1, "2021-01-01", 10, cliente1, vehiculo1, 3);

@@ -10,9 +10,9 @@ public class VehiculoController {
 
     // Poblamos el ArrayList con 3 vehiculos de prueba
     public VehiculoController() {
-        listaVehiculos.add(new Vehiculo("AB CD 11"));
-        listaVehiculos.add(new Vehiculo("EF GH 22"));
-        listaVehiculos.add(new Vehiculo("IJ KL 33"));
+        listaVehiculos.add(new Vehiculo("Abarth","Punto Abarth","AB-CD*11"));
+        listaVehiculos.add(new Vehiculo("Audi","A1 Sportback","EF-GH*22"));
+        listaVehiculos.add(new Vehiculo("Fiat","500L","IJ-KL*33"));
     }
 
     // Metodo que recibe un objeto de tipo vehiculo y lo agrega a un arrayList

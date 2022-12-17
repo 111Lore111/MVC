@@ -14,9 +14,7 @@ public class Cliente {
     private String nombre;
     private boolean vigente;
 
-    public Cliente() {
-
-    }
+    public Cliente() {}
 
     public Cliente(String cedula, String nombre, boolean vigente) {
         setCedula(cedula);

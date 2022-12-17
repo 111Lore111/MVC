@@ -14,6 +14,8 @@ public class CuotaArriendo {
     private int valorCuota;
     private boolean pagada;
 
+    public CuotaArriendo(){}
+    
     public CuotaArriendo(int numCuota, int valorCuota, boolean pagada) {
         setNumCuota(numCuota);
         setValorCuota(valorCuota);

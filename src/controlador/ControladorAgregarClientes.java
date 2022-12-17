@@ -15,7 +15,7 @@ public class ControladorAgregarClientes {
 
     // Poblamos el ArrayList con 3 clientes de prueba
     public ControladorAgregarClientes() {
-        listaClientes.add(new Cliente("12345678-0", "Lorraine", true));
+        listaClientes.add(new Cliente("12345678-0", "Luz Roja", true));
         listaClientes.add(new Cliente("12345678-1", "Giovani", true));
         listaClientes.add(new Cliente("12345678-2", "Astrid", true));
     }

@@ -9,18 +9,40 @@ package modelo;
  * @author Lorraine
  */
 public class Vehiculo {
-
+    
+    private String modelo;
+    private String marca;
     private String patente;
     private char condicion;
 
     public Vehiculo() {
     }
 
-    public Vehiculo(String patente) {
+    public Vehiculo(String modelo, String marca, String patente) {
+        setModelo(modelo);
+        setMarca(marca);
         setPatente(patente);
         setCondicion('D');
     }
 
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    
+    
     public String getPatente() {
         return patente;
     }

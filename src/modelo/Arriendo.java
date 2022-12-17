@@ -10,6 +10,8 @@ public class Arriendo {
     private int diasArriendo;
     private Cliente cliente;
     private Vehiculo vehiculo;
+    
+    public Arriendo(){}
 
     public Arriendo(int numArriendo, String fecArr, int diasArriendo, Cliente cliente, Vehiculo vehiculo) {
         setNumArriendo(numArriendo);
