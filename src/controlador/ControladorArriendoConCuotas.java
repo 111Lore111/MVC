@@ -2,6 +2,7 @@ package controlador;
 
 import java.util.ArrayList;
 import modelo.*;
+import vista.ArriendoConCuotas;
 
 // Esta es una clase que actua como controlador para la clase ArriendoCuota
 public class ControladorArriendoConCuotas {
@@ -113,6 +114,10 @@ public class ControladorArriendoConCuotas {
         }
 
         return false;
+    }
+
+    public void pagarCuota(ArriendoConCuotas arriendo, CuotaArriendo cuota) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
