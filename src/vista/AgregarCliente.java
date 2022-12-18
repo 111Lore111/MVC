@@ -313,34 +313,31 @@ public class AgregarCliente extends javax.swing.JFrame {
                 pack();
         }// </editor-fold>//GEN-END:initComponents
 
-        private void exitTxt1MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_exitTxt1MouseClicked
+        private void exitTxt1MouseClicked(java.awt.event.MouseEvent evt) {
                 System.exit(0);
-        }// GEN-LAST:event_exitTxt1MouseClicked
+        }
 
-        private void exitTxt1MouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_exitTxt1MouseEntered
+        private void exitTxt1MouseEntered(java.awt.event.MouseEvent evt) {
                 exitBtn1.setBackground(Color.red);
                 exitTxt1.setForeground(Color.white);
-        }// GEN-LAST:event_exitTxt1MouseEntered
+        }
 
-        private void exitTxt1MouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_exitTxt1MouseExited
+        private void exitTxt1MouseExited(java.awt.event.MouseEvent evt) {
                 exitBtn1.setBackground(new Color(0, 153, 153));
                 exitTxt1.setForeground(Color.black);
-        }// GEN-LAST:event_exitTxt1MouseExited
+        }
 
-        private void barra1MouseDragged(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_barra1MouseDragged
+        private void barra1MouseDragged(java.awt.event.MouseEvent evt) {
                 int x = evt.getXOnScreen();
                 int y = evt.getYOnScreen();
                 this.setLocation(x - xMouse, y - yMouse);
-        }// GEN-LAST:event_barra1MouseDragged
+        }
 
-        private void barra1MousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_barra1MousePressed
+        private void barra1MousePressed(java.awt.event.MouseEvent evt) {
                 xMouse = evt.getX();
                 yMouse = evt.getY();
-        }// GEN-LAST:event_barra1MousePressed
-
-        // IMPORTANTE ESTE METODO ES EL QUE SE EJECUTA CUANDO SE PRESIONA EL BOTON
-        // AGREGAR CLIENTE
-        private void agregarTxtMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_agregarTxtMouseClicked
+        }
+        private void agregarTxtMouseClicked(java.awt.event.MouseEvent evt) {
 
                 // Tomamos los datos de los campos textfields rut y nombre
                 String rut = rutCliente.getText();
@@ -361,31 +358,29 @@ public class AgregarCliente extends javax.swing.JFrame {
                 ArriendoConCuotas v = new ArriendoConCuotas();
                 v.setVisible(true);
         }
-        // ----------------
 
-        private void agregarTxtMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_agregarTxtMouseEntered
+        private void agregarTxtMouseEntered(java.awt.event.MouseEvent evt) {
                 agregarBtn.setBackground(Color.orange);
                 agregarTxt.setForeground(Color.black);
-        }// GEN-LAST:event_agregarTxtMouseEntered
+        }
 
-        private void agregarTxtMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_agregarTxtMouseExited
+        private void agregarTxtMouseExited(java.awt.event.MouseEvent evt) {
                 agregarBtn.setBackground(new Color(0, 153, 153));
                 agregarTxt.setForeground(Color.white);
-        }// GEN-LAST:event_agregarTxtMouseExited
+        }
 
-        private void vigenteTxtMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_vigenteTxtMouseClicked
+        private void vigenteTxtMouseClicked(java.awt.event.MouseEvent evt) {
                 // TODO add your handling code here:
-        }// GEN-LAST:event_vigenteTxtMouseClicked
-
-        private void vigenteTxtMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_vigenteTxtMouseEntered
+        }
+        private void vigenteTxtMouseEntered(java.awt.event.MouseEvent evt) {
                 vigenteBtn.setBackground(new Color(44, 131, 236));
                 vigenteTxt.setForeground(Color.black);
-        }// GEN-LAST:event_vigenteTxtMouseEntered
+        }
 
-        private void vigenteTxtMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_vigenteTxtMouseExited
+        private void vigenteTxtMouseExited(java.awt.event.MouseEvent evt) {
                 vigenteBtn.setBackground(new Color(0, 153, 153));
                 vigenteTxt.setForeground(Color.white);
-        }// GEN-LAST:event_vigenteTxtMouseExited
+        }
 
         public static void main(String args[]) {
 

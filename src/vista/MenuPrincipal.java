@@ -7,12 +7,8 @@ package vista;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import modelo.ArriendoCuota;
-import modelo.Cliente;
-import modelo.Vehiculo;
 
 /**
  *
@@ -121,9 +117,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 arriendoCuotaTxtMouseExited(evt);
             }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                arriendoCuotaTxtMousePressed(evt);
-            }
         });
 
         javax.swing.GroupLayout arriendoCuotaBtnLayout = new javax.swing.GroupLayout(arriendoCuotaBtn);
@@ -229,10 +222,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         xMouse = evt.getX();
         yMouse = evt.getY();
     }//GEN-LAST:event_barraMenuPrincipalMousePressed
-
-    private void arriendoCuotaTxtMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arriendoCuotaTxtMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_arriendoCuotaTxtMousePressed
 
     private void arriendoCuotaTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arriendoCuotaTxtMouseClicked
         ArriendoConCuotas v = new ArriendoConCuotas();

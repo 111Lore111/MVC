@@ -13,6 +13,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import controlador.ControladorAgregarClientes;
 import controlador.VehiculoController;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.*;
 
@@ -42,6 +44,9 @@ public class ArriendoConCuotas extends javax.swing.JFrame {
         modelo.addColumn("Vigente");
         modelo.addColumn("Monto");
         this.tabla.setModel(modelo);
+        
+        poblarComboboxCliente();
+        poblarComboboxVehiculo();
     }
 
     @SuppressWarnings("unchecked")
@@ -59,12 +64,10 @@ public class ArriendoConCuotas extends javax.swing.JFrame {
         listadoVehiculosComboBox = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         fechaArriendoTxt = new javax.swing.JTextField();
         diasTxt = new javax.swing.JTextField();
-        precioDiasTxt = new javax.swing.JTextField();
         montoPagarTxt = new javax.swing.JTextField();
         cantidadCuotasTxt = new javax.swing.JTextField();
         guardarArriendoBtn = new javax.swing.JPanel();
@@ -143,38 +146,32 @@ public class ArriendoConCuotas extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Sitka Display", 1, 24)); // NOI18N
         jLabel1.setText("Arriendo con cuotas");
 
-        ControladorAgregarClientes controladorAgregarCliente = new ControladorAgregarClientes();
-        // Listado de Clientes en arraylist
-        ArrayList<Cliente> listaClientes = controladorAgregarCliente.getListaClientes();
-
-        // Listar clientes en el combobox
-        listadoClientesComboBox
-                .setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un cliente" }));
-        for (Cliente cliente : listaClientes) {
-            listadoClientesComboBox.addItem(cliente.getNombre());
-        }
-
-        // Se crea combobox para seleccionar el vehiculo con listadoVehiculosComboBox
-        VehiculoController vehiculoCtrl = new VehiculoController();
-        // Listado de Vehiculos en arraylist
-        ArrayList<Vehiculo> listaVehiculos = vehiculoCtrl.getListaVehiculos();
-
-        // Listar vehiculos en el combobox
-        listadoVehiculosComboBox
-                .setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un vehiculo" }));
-        for (Vehiculo vehiculo : listaVehiculos) {
-            listadoVehiculosComboBox.addItem(vehiculo.getPatente());
-        }
-
+    
         jLabel2.setText("Fecha arriendo:");
 
         jLabel3.setText("Días:");
 
-        jLabel4.setText("Precio por día:");
-
         jLabel5.setText("Monto a Pagar");
 
         jLabel6.setText("Cantidad de cuotas:");
+
+        diasTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                diasTxtKeyTyped(evt);
+            }
+        });
+
+        montoPagarTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                montoPagarTxtKeyTyped(evt);
+            }
+        });
+
+        cantidadCuotasTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cantidadCuotasTxtKeyTyped(evt);
+            }
+        });
 
         guardarArriendoBtn.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -319,13 +316,11 @@ public class ArriendoConCuotas extends javax.swing.JFrame {
                                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(fechaArriendoTxt)
                                     .addComponent(diasTxt)
-                                    .addComponent(precioDiasTxt)
                                     .addComponent(montoPagarTxt)
                                     .addComponent(cantidadCuotasTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)))
                             .addComponent(guardarArriendoBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -337,10 +332,10 @@ public class ArriendoConCuotas extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(listadoClientesComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(listadoVehiculosComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ingresarNuevoClienteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ingresarNuevoClienteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(listadoClientesComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(listadoVehiculosComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(304, 304, 304))
         );
         jPanel1Layout.setVerticalGroup(
@@ -351,7 +346,7 @@ public class ArriendoConCuotas extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(listadoClientesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addComponent(listadoVehiculosComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ingresarNuevoClienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -369,17 +364,13 @@ public class ArriendoConCuotas extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(precioDiasTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(montoPagarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(cantidadCuotasTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
+                        .addGap(62, 62, 62)
                         .addComponent(guardarArriendoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
@@ -408,12 +399,55 @@ public class ArriendoConCuotas extends javax.swing.JFrame {
         v.setPatente(this.listadoVehiculosComboBox.getSelectedItem().toString());
         c.setVigente(true);
         cu.setValorCuota(Integer.parseInt(this.montoPagarTxt.getText()));
+       
         Object[] datos = {a.getDiasArriendo(), c.getNombre(), v.getPatente(), c.isVigente(), cu.getValorCuota()};
-        
         modelo.addRow(datos);
         
+        JOptionPane.showMessageDialog(null, "Datos ingresados correctamente");
     }//GEN-LAST:event_guardarArriendoTxtMouseClicked
+    
+    private void diasTxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_diasTxtKeyTyped
+        soloNumeros(evt);
+    }//GEN-LAST:event_diasTxtKeyTyped
 
+    private void cantidadCuotasTxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cantidadCuotasTxtKeyTyped
+        soloNumeros(evt);
+    }//GEN-LAST:event_cantidadCuotasTxtKeyTyped
+
+    private void montoPagarTxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_montoPagarTxtKeyTyped
+        soloNumeros(evt);
+    }//GEN-LAST:event_montoPagarTxtKeyTyped
+    
+    private void poblarComboboxCliente(){
+        ControladorAgregarClientes controladorAgregarCliente = new ControladorAgregarClientes();
+        
+        ArrayList<Cliente> listaClientes = controladorAgregarCliente.getListaClientes();
+
+        listadoClientesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un cliente" }));
+        for (Cliente cliente : listaClientes) {
+            listadoClientesComboBox.addItem(cliente.getNombre());
+        }
+    }
+    
+     private void poblarComboboxVehiculo(){
+         VehiculoController vehiculoCtrl = new VehiculoController();
+      
+        ArrayList<Vehiculo> listaVehiculos = vehiculoCtrl.getListaVehiculos();
+
+        listadoVehiculosComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un vehiculo" }));
+        for (Vehiculo vehiculo : listaVehiculos) {
+            listadoVehiculosComboBox.addItem(vehiculo.getPatente());
+        }
+    }
+    
+    private void soloNumeros(java.awt.event.KeyEvent evt){
+    
+        Character c = evt.getKeyChar();
+        if(!Character.isDigit(c)){
+            evt.consume();
+        }
+    }
+    
     private void barraMousePressed(java.awt.event.MouseEvent evt) {
         xMouse = evt.getX();
         yMouse = evt.getY();
@@ -506,7 +540,6 @@ public class ArriendoConCuotas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
@@ -515,7 +548,6 @@ public class ArriendoConCuotas extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> listadoClientesComboBox;
     private javax.swing.JComboBox<String> listadoVehiculosComboBox;
     private javax.swing.JTextField montoPagarTxt;
-    private javax.swing.JTextField precioDiasTxt;
     private javax.swing.JTable tabla;
     private javax.swing.JPanel volverBtn;
     private javax.swing.JLabel volverTxt;

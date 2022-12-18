@@ -26,9 +26,6 @@ public class PagarCuotasArriendos extends javax.swing.JFrame {
     FondoPanelPagarCuotas fondo = new FondoPanelPagarCuotas();
     int xMouse, yMouse;
 
-    // Creo variables globales ClienteSeleccionado, ArriendoSeleccionado y
-    // CuotaSeleccionada
-    Cliente clienteSeleccionado;
     ArriendoCuota arriendoSeleccionado;
     CuotaArriendo cuotaSeleccionada;
 
@@ -154,11 +151,6 @@ public class PagarCuotasArriendos extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Seleccione arriendo:");
 
-        listaArriendo.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(listaArriendo);
 
         tablaCuotas.setModel(new javax.swing.table.DefaultTableModel(
@@ -349,7 +341,7 @@ public class PagarCuotasArriendos extends javax.swing.JFrame {
         }
         
         controladorArriendoConCuotas.pagarCuota((ArriendoCuota) this.arriendoSeleccionado, cuotaSeleccionada);
-        JOptionPane.showMessageDialog(null, "Pago exitoso");
+        JOptionPane.showMessageDialog(null, "Pago exitoso, puede volver a seleccionar cliente");
         
         tablaCuotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {},
@@ -357,8 +349,6 @@ public class PagarCuotasArriendos extends javax.swing.JFrame {
                 "Número", "Valor", "¿Pagada?"
             }
         ));
-        
-        
     }//GEN-LAST:event_pagoTxtMouseClicked
 
     private void mostrarArriendoTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mostrarArriendoTxtMouseClicked
@@ -393,9 +383,6 @@ public class PagarCuotasArriendos extends javax.swing.JFrame {
                     // Se agrega la fila a la tabla
                     modelo.addRow(datosCuota);
             }
-
-            // Se actualiza la tabla se borran las filas por defecto y se agregan las filas
-            // con los datos de las cuotas
             tablaCuotas.setModel(modelo);
     }//GEN-LAST:event_mostrarArriendoTxtMouseClicked
 
@@ -412,8 +399,6 @@ public class PagarCuotasArriendos extends javax.swing.JFrame {
         }
         ArrayList<ArriendoCuota> listaArriendos = controladorArriendoConCuotas.getArriendosConCuotas(clienteSeleccionado);
 
-        // Listar arriendos con cuotas del cliente seleccionado en jList1 mostrando solo
-        // el numArriendo como int
         listaArriendo.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = new String[listaArriendos.size()];
 
@@ -435,77 +420,74 @@ public class PagarCuotasArriendos extends javax.swing.JFrame {
     }//GEN-LAST:event_listadoClientesComboBoxActionPerformed
 
     // pagoBtn mouse events
-    private void pagoBtnMouseClicked(java.awt.event.MouseEvent evt, ArriendoConCuotas arriendo,
-            CuotaArriendo cuota) {
-        // Se llama al metodo pagarCuota de la clase dentroladorArriendoConCuotas
+    private void pagoBtnMouseClicked(java.awt.event.MouseEvent evt, ArriendoConCuotas arriendo, CuotaArriendo cuota) {
+       
         controladorArriendoConCuotas.pagarCuota(arriendo, cuota);
-        // Se muestra el mensaje de pago exitoso
+
         JOptionPane.showMessageDialog(null, "Pago exitoso");
     }
 
-    private void exitTxtMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_exitTxtMouseClicked
+    private void exitTxtMouseClicked(java.awt.event.MouseEvent evt) {
         System.exit(0);
-    }// GEN-LAST:event_exitTxtMouseClicked
+    }
 
-    private void exitTxtMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_exitTxtMouseEntered
+    private void exitTxtMouseEntered(java.awt.event.MouseEvent evt) {
         exitBtn.setBackground(Color.red);
         exitTxt.setForeground(Color.white);
-    }// GEN-LAST:event_exitTxtMouseEntered
+    }
 
-    private void exitTxtMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_exitTxtMouseExited
+    private void exitTxtMouseExited(java.awt.event.MouseEvent evt) {
         exitBtn.setBackground(new Color(0, 153, 153));
         exitTxt.setForeground(Color.black);
-    }// GEN-LAST:event_exitTxtMouseExited
+    }
 
-    private void barraMenuPrincipalMouseDragged(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_barraMenuPrincipalMouseDragged
+    private void barraMenuPrincipalMouseDragged(java.awt.event.MouseEvent evt) {
         int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
         this.setLocation(x - xMouse, y - yMouse);
-    }// GEN-LAST:event_barraMenuPrincipalMouseDragged
+    }
 
-    private void barraMenuPrincipalMousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_barraMenuPrincipalMousePressed
+    private void barraMenuPrincipalMousePressed(java.awt.event.MouseEvent evt) {
         xMouse = evt.getX();
         yMouse = evt.getY();
-    }// GEN-LAST:event_barraMenuPrincipalMousePressed
+    }
 
-    private void volverTxtMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_volverTxtMouseClicked
+    private void volverTxtMouseClicked(java.awt.event.MouseEvent evt) {
         MenuPrincipal v = new MenuPrincipal();
         v.setVisible(true);
         this.dispose();
-    }// GEN-LAST:event_volverTxtMouseClicked
+    }
 
-    private void volverTxtMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_volverTxtMouseEntered
+    private void volverTxtMouseEntered(java.awt.event.MouseEvent evt) {
         volverBtn.setBackground(Color.orange);
         volverTxt.setForeground(Color.black);
-    }// GEN-LAST:event_volverTxtMouseEntered
+    }
 
-    private void volverTxtMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_volverTxtMouseExited
+    private void volverTxtMouseExited(java.awt.event.MouseEvent evt) {
         volverBtn.setBackground(new Color(0, 153, 153));
         volverTxt.setForeground(Color.white);
-    }// GEN-LAST:event_volverTxtMouseExited
+    }
 
-    private void pagoTxtMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_pagoTxtMouseEntered
+    private void pagoTxtMouseEntered(java.awt.event.MouseEvent evt) {
         pagoBtn.setBackground(new Color(44, 131, 236));
         pagoTxt.setForeground(Color.black);
-    }// GEN-LAST:event_pagoTxtMouseEntered
+    }
 
-    private void pagoTxtMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_pagoTxtMouseExited
+    private void pagoTxtMouseExited(java.awt.event.MouseEvent evt) {
         pagoBtn.setBackground(new Color(0, 153, 153));
         pagoTxt.setForeground(Color.white);
-    }// GEN-LAST:event_pagoTxtMouseExited
+    }
 
-    private void mostrarArriendoTxtMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_mostrarArriendoTxtMouseEntered
+    private void mostrarArriendoTxtMouseEntered(java.awt.event.MouseEvent evt) {
         mostrarArriendoBtn.setBackground(new Color(60, 205, 93));
         mostrarArriendoTxt.setForeground(Color.black);
-    }// GEN-LAST:event_mostrarArriendoTxtMouseEntered
+    }
 
-    private void mostrarArriendoTxtMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_mostrarArriendoTxtMouseExited
+    private void mostrarArriendoTxtMouseExited(java.awt.event.MouseEvent evt) {
         mostrarArriendoBtn.setBackground(new Color(0, 153, 153));
         mostrarArriendoTxt.setForeground(Color.white);
-    }// GEN-LAST:event_mostrarArriendoTxtMouseExited
+    }
 
-    // private void pagoTxtMouseClicked(java.awt.event.MouseEvent evt) {//
-    // GEN-FIRST:event_pagoTxtMouseClicked
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {

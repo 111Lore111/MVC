@@ -2,11 +2,6 @@ package modelo;
 
 import java.util.ArrayList;
 
-// numArriendo; Es un numero de arriendo consecutivo
-// fecArr; Es la fecha de inicio del arriendo
-// diasArriendo; Es la cantidad de dias que se arrienda el vehiculo
-// canCuotas; Es la cantidad de cuotas que se pagaran
-
 public class ArriendoCuota extends Arriendo {
     private int cantCuotas;
     private ArrayList<CuotaArriendo> cuotas;
@@ -25,37 +20,6 @@ public class ArriendoCuota extends Arriendo {
     public void setCantCuotas(int cantCuotas) {
         this.cantCuotas = cantCuotas;
     }
-
-    // ----------------
-
-    // // Este método evalúa los datos del arriendo instanciado (invocando la
-    // función
-    // // evaluarArriendo) retornando true si la operación fue exitosa y false si no
-    // lo
-    // // fue. En el caso de que la operación sea
-    // // exitosa, este método automáticamente dejará el vehículo arrendado con
-    // // condición A y para aplicar correctamente la
-    // // relación compuesta entre los objetos arriendo y cuotas, asignará las
-    // cuotas
-    // // respectivas del arriendo invocando la
-    // // función definida en c
-
-    // public boolean ingresarArriendoConCuotas(int precioDia) {
-    // if (evaluarArriendo(getCliente(), getVehiculo())) {
-    // getVehiculo().setCondicion('A');
-    // setCuotas(generarCuotas(precioDia));
-    // return true;
-    // } else {
-    // return false;
-    // }
-    // }
-
-    // // generarCuotas: Este método recibe como parámetro un entero que representa
-    // el
-    // // precio del día del vehículo arrendado y retorna
-    // // un ArrayList de objetos de tipo CuotaArriendo. Este método se encarga de
-    // // generar las cuotas del arriendo instanciado
-    // // y asignarles el valor correspondiente a cada una de ellas.
 
     public ArrayList<CuotaArriendo> generarCuotas(int precioDia) {
         ArrayList<CuotaArriendo> cuotas = new ArrayList<>();
