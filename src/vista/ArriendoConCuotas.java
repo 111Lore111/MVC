@@ -13,7 +13,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import controlador.ControladorAgregarClientes;
 import controlador.VehiculoController;
-import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.*;
@@ -41,7 +40,6 @@ public class ArriendoConCuotas extends javax.swing.JFrame {
         modelo.addColumn("Días arriendo");
         modelo.addColumn("Nombre");
         modelo.addColumn("Patente");
-        modelo.addColumn("Vigente");
         modelo.addColumn("Monto");
         this.tabla.setModel(modelo);
         
@@ -397,10 +395,9 @@ public class ArriendoConCuotas extends javax.swing.JFrame {
         a.setDiasArriendo(Integer.parseInt(this.diasTxt.getText()));
         c.setNombre(this.listadoClientesComboBox.getSelectedItem().toString());
         v.setPatente(this.listadoVehiculosComboBox.getSelectedItem().toString());
-        c.setVigente(true);
         cu.setValorCuota(Integer.parseInt(this.montoPagarTxt.getText()));
        
-        Object[] datos = {a.getDiasArriendo(), c.getNombre(), v.getPatente(), c.isVigente(), cu.getValorCuota()};
+        Object[] datos = {a.getDiasArriendo(), c.getNombre(), v.getPatente(), cu.getValorCuota()};
         modelo.addRow(datos);
         
         JOptionPane.showMessageDialog(null, "Datos ingresados correctamente");
@@ -429,7 +426,7 @@ public class ArriendoConCuotas extends javax.swing.JFrame {
         }
     }
     
-     private void poblarComboboxVehiculo(){
+    private void poblarComboboxVehiculo(){
          VehiculoController vehiculoCtrl = new VehiculoController();
       
         ArrayList<Vehiculo> listaVehiculos = vehiculoCtrl.getListaVehiculos();

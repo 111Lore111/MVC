@@ -4,20 +4,38 @@
  */
 package controlador;
 
-import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import modelo.*;
-import vista.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ControladorAgregarClientes {
     // Creamos un arrayList de tipo cliente
     ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
 
-    // Poblamos el ArrayList con 3 clientes de prueba
     public ControladorAgregarClientes() {
-        listaClientes.add(new Cliente("12345678-0", "Luz Roja", true));
-        listaClientes.add(new Cliente("12345678-1", "Giovani", true));
-        listaClientes.add(new Cliente("12345678-2", "Astrid", true));
+        File archivo = new File("archivoClientes.csv");
+        if (!archivo.exists()) {
+            throw new IllegalArgumentException("El archivo no existe.");
+        }
+        try (Scanner leer = new Scanner(archivo)) {
+            leer.nextLine();
+            while (leer.hasNextLine()) {
+                String linea = leer.nextLine();
+                String siguiente[] = linea.split(";");
+                String cedula = siguiente[0];
+                String nombre = siguiente[1];
+                boolean vigente = Boolean.parseBoolean(siguiente[2]);
+                if (vigente != false) {
+                   listaClientes.add(new Cliente(cedula,nombre,vigente)); 
+                }
+            }
+        } catch(FileNotFoundException e){
+            e.printStackTrace();
+        }
     }
 
     // Creamos un metodo que recibe como parametro nombre y cedula y vigente del
@@ -25,7 +43,23 @@ public class ControladorAgregarClientes {
     public void agregarCliente(String cedula, String nombre, boolean vigente) {
         // Creamos un objeto de tipo cliente
         Cliente cliente = new Cliente();
-        // Asignamos los valores a los atributos del objeto cliente
+        
+        File archivo = new File("archivoClientes.csv");
+        
+        try {
+            BufferedWriter bf = new BufferedWriter(new FileWriter(archivo,true));
+            bf.append(cedula);
+            bf.append(";");
+            bf.append(nombre);
+            bf.append(";");
+            bf.append(String.valueOf(vigente));
+            bf.newLine();
+            bf.close();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        
+        
         cliente.setNombre(nombre);
         cliente.setCedula(cedula);
         cliente.setVigente(vigente);
